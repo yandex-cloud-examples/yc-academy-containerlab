@@ -1,0 +1,35 @@
+name: switching
+
+topology:
+  nodes:
+    ovs-bridge1:
+      kind: ovs-bridge
+    ovs-bridge2:
+      kind: ovs-bridge
+    ovs-bridge3:
+      kind: ovs-bridge
+    ovs-bridge4:
+      kind: ovs-bridge
+    pc1:
+      kind: linux
+      image: alpine:latest
+    pc2:
+      kind:  linux
+      image: alpine:latest
+    pc3:
+      kind: linux
+      image: alpine:latest
+    pc4:
+      kind:  linux
+      image: alpine:latest
+
+
+  links:
+  - endpoints: ["ovs-bridge1:ovsp1", "ovs-bridge3:ovsp3"]
+  - endpoints: ["ovs-bridge1:ovsp2", "ovs-bridge4:ovsp8"]
+  - endpoints: ["ovs-bridge2:ovsp5", "ovs-bridge4:ovsp7"]
+  - endpoints: ["ovs-bridge2:ovsp6", "ovs-bridge3:ovsp4"]
+  - endpoints: ["ovs-bridge3:ovsp9", "pc1:eth1"]
+  - endpoints: ["ovs-bridge3:ovsp10", "pc2:eth1"]
+  - endpoints: ["ovs-bridge4:ovsp11", "pc3:eth1"]
+  - endpoints: ["ovs-bridge4:ovsp12", "pc4:eth1"]

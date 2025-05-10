@@ -1,0 +1,61 @@
+variables:
+  DIND_IMAGE: cr.yandex/crpoenpt4klrdfdcc1lv/dind-noc:95d3883
+  DIND_IMAGE_LAB4: cr.yandex/crpoenpt4klrdfdcc1lv/dind-noc-lab4:3be1202
+
+stages:
+  - trigger
+
+# Задаем триггеры для каждой лабы
+trigger_lab1:
+  stage: trigger
+  rules:
+    - changes:
+        - lab1/**         # Путь к файлам, за которыми нужно следить
+  trigger:
+    include: 
+      - local: lab1/.gitlab-ci.yml
+
+trigger_lab2:
+  stage: trigger
+  rules:
+    - changes:
+        - lab2/**         # Путь к файлам, за которыми нужно следить
+  trigger:
+    include: 
+      - local: lab2/.gitlab-ci.yml
+
+trigger_lab3:
+  stage: trigger
+  rules:
+    - changes:
+        - lab3/**         # Путь к файлам, за которыми нужно следить
+  trigger:
+    include: 
+      - local: lab3/.gitlab-ci.yml
+
+trigger_lab4:
+  stage: trigger
+  rules:
+    - changes:
+        - lab4/**         # Путь к файлам, за которыми нужно следить
+  trigger:
+    include: 
+      - local: lab4/.gitlab-ci.yml
+
+trigger_lab5:
+  stage: trigger
+  rules:
+    - changes:
+        - lab5/**         # Путь к файлам, за которыми нужно следить
+  trigger:
+    include: 
+      - local: lab5/.gitlab-ci.yml
+
+trigger_lab6:
+  stage: trigger
+  rules:
+    - changes:
+        - lab6/**         # Путь к файлам, за которыми нужно следить
+  trigger:
+    include: 
+      - local: lab6/.gitlab-ci.yml

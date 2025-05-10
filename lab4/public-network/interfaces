@@ -1,0 +1,12 @@
+auto lo
+iface lo inet loopback
+
+iface eth1 inet static
+	addreess 203.0.113.1/30
+
+iface eth2 inet static
+        addreess 203.0.113.5/30
+
+iface eth3 inet static
+        addreess 203.0.113.9/30
+

@@ -1,0 +1,84 @@
+name: ospf
+
+topology:
+  nodes:
+    router1:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      network-mode: none
+      binds:
+        - router1/daemons:/etc/frr/daemons
+        - router1/frr.conf:/etc/frr/frr.conf
+        - router1/vtysh.conf:/etc/frr/vtysh.conf
+    router2:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      network-mode: none
+      binds:
+        - router2/daemons:/etc/frr/daemons
+        - router2/frr.conf:/etc/frr/frr.conf
+        - router2/vtysh.conf:/etc/frr/vtysh.conf
+    router3:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      network-mode: none
+      binds:
+        - router3/daemons:/etc/frr/daemons
+        - router3/frr.conf:/etc/frr/frr.conf
+        - router3/vtysh.conf:/etc/frr/vtysh.conf
+    router4:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      network-mode: none
+      binds:
+        - router4/daemons:/etc/frr/daemons
+        - router4/frr.conf:/etc/frr/frr.conf
+        - router4/vtysh.conf:/etc/frr/vtysh.conf
+    router5:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      network-mode: none
+      binds:
+        - router5/daemons:/etc/frr/daemons
+        - router5/frr.conf:/etc/frr/frr.conf
+        - router5/vtysh.conf:/etc/frr/vtysh.conf
+    router6:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      network-mode: none
+      binds:
+        - router6/daemons:/etc/frr/daemons
+        - router6/frr.conf:/etc/frr/frr.conf
+        - router6/vtysh.conf:/etc/frr/vtysh.conf
+    router7:
+      kind: linux
+      image: frrouting/frr:v7.5.1
+      network-mode: none
+      binds:
+        - router7/daemons:/etc/frr/daemons
+        - router7/frr.conf:/etc/frr/frr.conf
+        - router7/vtysh.conf:/etc/frr/vtysh.conf
+    PC1:
+      kind: linux
+      image: praqma/network-multitool:latest
+    PC2:
+      kind: linux
+      image: praqma/network-multitool:latest
+    PC3:
+      kind: linux
+      image: praqma/network-multitool:latest
+ 
+  links:
+    - endpoints: ["router1:eth1", "router2:eth2"]
+    - endpoints: ["router1:eth2", "router3:eth1"]
+    - endpoints: ["router1:eth3", "router5:eth1"]
+    - endpoints: ["router2:eth3", "router5:eth2"]
+    - endpoints: ["router2:eth1", "router4:eth2"]
+    - endpoints: ["router3:eth2", "router4:eth1"]
+    - endpoints: ["router3:eth3", "router6:eth1"]
+    - endpoints: ["router4:eth3", "router6:eth2"]
+    - endpoints: ["router5:eth3", "PC1:eth1"]
+    - endpoints: ["router6:eth3", "router7:eth1"]
+    - endpoints: ["router7:eth2", "PC2:eth1"]
+    - endpoints: ["router7:eth3", "PC3:eth1"]
+

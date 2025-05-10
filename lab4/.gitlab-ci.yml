@@ -1,0 +1,21 @@
+stages:
+  - test
+
+test_job:
+  image: $DIND_IMAGE_LAB4
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+  stage: test
+  tags:
+    - dind
+  script:
+    - dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay2 &             # Start Docker in the background
+    - sleep 30
+    - cd lab4
+    - sudo docker load -i /usr/clab/alpineimage.tar
+    - sudo docker load -i /usr/clab/frrimage.tar
+    - sudo docker load -i /usr/clab/frrimage-lab4.tar
+    - sudo ./start.sh
+    - sleep 30
+    - sudo python3 check.py
+
